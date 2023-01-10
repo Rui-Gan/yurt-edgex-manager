@@ -70,7 +70,7 @@ func (c *Component) addEnv(envs map[string]interface{}) {
 
 const (
 	volumesSplitMinLen        = 2
-	anonymousVolumeNamePrefix = "anonymous_volume"
+	anonymousVolumeNamePrefix = "anonymous-volume"
 )
 
 func (c *Component) fillVolumes(volumes []interface{}) {
@@ -79,10 +79,12 @@ func (c *Component) fillVolumes(volumes []interface{}) {
 		volumeStr, ok := v.(string)
 		if volumeStr == "" || !ok {
 			logger.Warningln("This is not a valid volume", "value:", v)
+			logger.Warningln("This is not a valid volume", "value:", v)
 			continue
 		}
 		infos := strings.Split(volumeStr, ":")
 		if len(infos) < volumesSplitMinLen {
+			logger.Warningln("This is not a valid volume", "value:", v)
 			logger.Warningln("This is not a valid volume", "value:", v)
 			continue
 		}
